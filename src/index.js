@@ -47,21 +47,12 @@ const createCell = (i) => {
 
     if (!(id || id === 0)) return;
 
-    if (game.xTurn) {
-      game.xState.push(id);
+    game.xTurn ? game.xState.push(id) : game.oState.push(id);
 
-      element.classList.add("x");
-
-      game.xTurn = false;
-    } else {
-      game.oState.push(id);
-
-      element.classList.add("o");
-
-      game.xTurn = true;
-    }
-
+    element.classList.add(game.xTurn ? "x" : "o");
     element.classList.add("disabled");
+
+    game.xTurn = !game.xTurn;
 
     console.log(game);
   });
