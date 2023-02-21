@@ -1,5 +1,26 @@
 import "./styles.css";
 
+let game = {
+  xTurn: true,
+  xState: [],
+  oState: [],
+  winningState: [
+    // Diagonal
+    [0, 4, 8],
+    [2, 4, 6],
+
+    // Rows
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+
+    // Columns
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+  ],
+};
+
 const createGrid = () => {
   const grid = document.createElement("div");
 
@@ -14,7 +35,36 @@ const createCell = (i) => {
   cell.classList.add("cell");
   cell.dataset.id = i;
 
-  cell.addEventListener("click", () => console.log(i));
+  // cell.addEventListener("click", function () {
+  //   console.log(this);
+  //   const id = parseInt(this.dataset.id);
+  //   console.log(id);
+  // });
+
+  cell.addEventListener("click", (event) => {
+    const element = event.target;
+    const id = parseInt(element.dataset.id);
+
+    if (!(id || id === 0)) return;
+
+    if (game.xTurn) {
+      game.xState.push(id);
+
+      element.classList.add("x");
+
+      game.xTurn = false;
+    } else {
+      game.oState.push(id);
+
+      element.classList.add("o");
+
+      game.xTurn = true;
+    }
+
+    element.classList.add("disabled");
+
+    console.log(game);
+  });
 
   return cell;
 };
