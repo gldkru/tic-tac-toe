@@ -9,7 +9,6 @@ for (let i = 0; i < 9; i++) {
   const cell = document.createElement("div");
   cell.classList.add("cell");
 
-  cell.textContent = i;
   cell.dataset.id = i;
 
   grid.appendChild(cell);
