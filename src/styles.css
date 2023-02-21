@@ -59,3 +59,8 @@ body {
 .o::after {
   content: "⭕";
 }
+
+.disabled {
+  background-color: transparent !important;
+  cursor: default !important;
+}
